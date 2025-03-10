@@ -27,7 +27,10 @@ public class FuncUtil {
 	// add user into the map userDb. You should also use the built-in interface in map to check for existing user.
 	//
 	public void addSubscriber(Subscriber subscriber) {
-
+		Supplier<String> userID = () -> generateId().toString();
+		String id = userID.get();
+		subscriber.setUserID(id);
+		userDb.putIfAbsent(id, subscriber);
 	}
 
 	public Integer generateId() {
